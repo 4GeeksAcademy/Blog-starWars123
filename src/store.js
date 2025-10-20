@@ -134,7 +134,28 @@ export const getImageUrl = (category, id) => {
   };
   
   const imageCategory = categoryMap[category] || category;
+  
   return `https://starwars-visualguide.com/assets/img/${imageCategory}/${id}.jpg`;
+};
+
+export const getDiceBearUrl = (category, name, id) => {
+  const styles = {
+    people: 'adventurer',      
+    vehicles: 'identicon',      
+    planets: 'rings'     
+  };
+  
+  const backgrounds = {
+    people: '0f0f23',
+    vehicles: '1a1a2e', 
+    planets: '2d1b69'
+  };
+  
+  const style = styles[category] || 'identicon';
+  const bg = backgrounds[category] || '000000';
+  const seed = encodeURIComponent(`${name}-${id}`);
+  
+  return `https://api.dicebear.com/7.x/${style}/svg?seed=${seed}&backgroundColor=${bg}&scale=80`;
 };
 
 
